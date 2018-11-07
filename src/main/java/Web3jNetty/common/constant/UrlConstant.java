@@ -16,6 +16,8 @@ public class UrlConstant {
     public static String APP = "/app/";
     //openreq
     public static String OPENREQ = "/openreq/";
+    //datebirth
+    public static String DATEBIRTH = "/datebirth/";
 
 
     //创建账号：

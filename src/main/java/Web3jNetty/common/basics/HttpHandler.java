@@ -3,19 +3,14 @@ package Web3jNetty.common.basics;
 import Web3jNetty.common.constant.UrlConstant;
 import Web3jNetty.common.response.responseBody;
 import Web3jNetty.common.response.responseMsg;
-import io.netty.channel.ChannelFutureListener;
+import Web3jNetty.common.util.StringUtil;
+import com.google.common.collect.Lists;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.FullHttpResponse;
-import io.netty.handler.codec.http.HttpHeaderNames;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Pattern;
-
-import static io.netty.handler.codec.http.HttpResponseStatus.FOUND;
-import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  * http 自定义处理程序
@@ -32,17 +27,33 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
         String fullpath = msg.uri();
         String json = responseBody.getResponseSuccess();
-        String method = getMethodStr(fullpath, msg, ctx);
-        if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.ADMIN)) {
+        if (StringUtil.isHaveStartStr(Lists.newArrayList(httpConfig.PORT_REQUEST_PATH), fullpath)) {
+            String method = getMethodStr(fullpath, msg, ctx);
+            if (StringUtils.isNotBlank(method)) {
+                if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.ADMIN)) {
 
-        } else if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.APP)) {
 
-        } else if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.OPENREQ)) {
+                    return;
+                } else if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.APP)) {
 
+
+                    return;
+                } else if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.OPENREQ)) {
+
+
+                    return;
+                } else if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.DATEBIRTH)) {
+
+
+                    return;
+                }
+            }
         } else {
             json = responseBody.getResponseFailDefinedDataMsg(new Object(), responseMsg.USELESS_REQUEST);
             writeBufferUtil.writeBuffer(ctx, json);
+            return;
         }
+
     }
 
     @Override
@@ -67,9 +78,21 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
     private String getMethodStr(String fullpath, FullHttpRequest msg, ChannelHandlerContext ctx) {
         String method = "";
-        if (UrlConstant.SLASH_PARTITION.equalsIgnoreCase(fullpath)) {
-
+        if (fullpath.contains("?")) {
+            fullpath = fullpath.substring(fullpath.indexOf("/", 0), fullpath.indexOf("?", 0));
         }
+        String[] fullpats = fullpath.split("/");
+        StringBuilder sbu = new StringBuilder();
+        int i = 0;
+        for (String path : fullpats) {
+            if (i > 0) {
+                sbu = sbu.append(path.substring(0, 1).toUpperCase() + path.substring(1));
+            } else {
+                sbu = sbu.append(path);
+            }
+            i++;
+        }
+        method = sbu.toString();
 
         return method;
     }

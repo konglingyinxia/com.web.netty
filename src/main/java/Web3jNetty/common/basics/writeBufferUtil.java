@@ -33,7 +33,6 @@ public class writeBufferUtil {
         heads.add(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes()); // 3
         heads.add(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         ctx.writeAndFlush(response);
-        return;
     }
     //TODO html 页面输出
 
