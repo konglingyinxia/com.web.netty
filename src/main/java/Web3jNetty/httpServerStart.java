@@ -2,6 +2,7 @@ package Web3jNetty;
 
 import Web3jNetty.common.basics.HttpHandler;
 import Web3jNetty.common.basics.httpConfig;
+import Web3jNetty.common.core.InitClass;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -41,6 +42,10 @@ public class httpServerStart {
 
 
     public static void main(String[] args) throws Exception {
+        InitClass.iniMthod();
+
+        //List list = JdbcTemplateUtil.jdbcTemplate.queryForList("select  * from main.user_account");
+        //System.out.println(list);
         start();
     }
 

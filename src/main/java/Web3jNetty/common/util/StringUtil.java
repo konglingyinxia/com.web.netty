@@ -1,5 +1,8 @@
 package Web3jNetty.common.util;
 
+import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
+
 import java.util.List;
 
 /**
@@ -21,6 +24,20 @@ public class StringUtil {
             }
         }
         return Boolean.FALSE;
+    }
+
+    /**
+     * 去除数组中的空值
+     */
+    public static String[] removeNullEmpty(String[] arrStr) {
+        List<String> arrayStr = Lists.newArrayList();
+        for (String arr : arrStr) {
+            if (StringUtils.isNotBlank(arr)) {
+                arrayStr.add(arr);
+            }
+        }
+        String[] array = new String[arrayStr.size()];
+        return arrayStr.toArray(array);
     }
 
 

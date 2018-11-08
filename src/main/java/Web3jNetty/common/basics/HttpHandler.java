@@ -82,6 +82,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             fullpath = fullpath.substring(fullpath.indexOf("/", 0), fullpath.indexOf("?", 0));
         }
         String[] fullpats = fullpath.split("/");
+        fullpats = StringUtil.removeNullEmpty(fullpats);
         StringBuilder sbu = new StringBuilder();
         int i = 0;
         for (String path : fullpats) {
