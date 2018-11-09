@@ -21,7 +21,7 @@ public class UrlConstant {
 
 
     //创建账号：
-    public static String CREATE_ACCOUNT_URL = "/openreq/create_account";
+    public static String CREATE_ACCOUNT_URL = "/openreq/createAccount";
 
     //查询余额
 

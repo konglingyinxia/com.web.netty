@@ -16,4 +16,14 @@ public class responseMsg {
      * 无效的请求地址
      */
     public static String USELESS_REQUEST = "无效的请求!";
+
+    /**
+     * 不支持的请求方式
+     */
+    public static String NO_SUPORT_REQ_METHOD = "不支持的请求方式";
+
+    /**
+     * 参数解析错误
+     */
+    public static String REQ_PARAMS_ANALYSIS = "参数解析错误";
 }

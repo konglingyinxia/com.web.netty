@@ -43,9 +43,6 @@ public class httpServerStart {
 
     public static void main(String[] args) throws Exception {
         InitClass.iniMthod();
-
-        //List list = JdbcTemplateUtil.jdbcTemplate.queryForList("select  * from main.user_account");
-        //System.out.println(list);
         start();
     }
 

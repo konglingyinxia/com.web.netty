@@ -3,6 +3,7 @@ package Web3jNetty.common.basics;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.http.HttpContentCompressor;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
@@ -50,8 +51,9 @@ public class SSLChannelInitializer extends ChannelInitializer<SocketChannel> {
                 new SslHandler(sslEngine)).
                 addLast("decoder", new HttpRequestDecoder()).
                 addLast("encoder", new HttpResponseEncoder()).
-                addLast("aggregator", new HttpObjectAggregator(512 * 1024)).
-                addLast("handler", new HttpHandler());
+                addLast("aggregator", new HttpObjectAggregator(512 * 1024))
+                .addLast(new HttpContentCompressor(1))//压缩4
+                .addLast("handler", new HttpHandler());
     }
 }
 
