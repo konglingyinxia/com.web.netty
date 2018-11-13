@@ -6,7 +6,7 @@ package Web3jNetty.common.response;
  * @date 2018-11-05  19:40
  * @project comwebnetty
  */
-public class responseMsg {
+public class ResponseMsg {
     public static String SUCCESS_MSG = "操作成功";
     public static String FAIL_MSG = "操作失败";
 

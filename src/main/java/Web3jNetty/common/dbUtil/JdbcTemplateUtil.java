@@ -22,7 +22,7 @@ public class JdbcTemplateUtil {
 
     public JdbcTemplateUtil() {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        dataSource = (DataSource) context.getBean("dataSource");
+        dataSource = (DataSource) context.getBean(DataSource.class);
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 }

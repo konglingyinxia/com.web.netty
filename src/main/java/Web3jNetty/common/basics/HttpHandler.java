@@ -1,8 +1,8 @@
 package Web3jNetty.common.basics;
 
 import Web3jNetty.common.constant.UrlConstant;
-import Web3jNetty.common.response.responseBody;
-import Web3jNetty.common.response.responseMsg;
+import Web3jNetty.common.response.ResponseBody;
+import Web3jNetty.common.response.ResponseMsg;
 import Web3jNetty.common.util.StringUtil;
 import Web3jNetty.openreq.controller.OpenreqCommInterface;
 import com.google.common.collect.Lists;
@@ -33,12 +33,12 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) {
         String fullpath = msg.uri();
         String httpMethod = msg.method().name();
-        String json = responseBody.getResponseFailDefinedDataMsg(new Object(), responseMsg.NO_SUPORT_REQ_METHOD);
+        String json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.NO_SUPORT_REQ_METHOD);
         if (!httpMethods.contains(httpMethod)) {
-            writeBufferUtil.writeBuffer(ctx, json);
+            WriteBufferUtil.writeBuffer(ctx, json);
             return;
         }
-        json = responseBody.getResponseFailDefinedDataMsg(new Object(), responseMsg.USELESS_REQUEST);
+        json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.USELESS_REQUEST);
         if (StringUtil.isHaveStartStr(Lists.newArrayList(httpConfig.PORT_REQUEST_PATH), fullpath)) {
             String method = getMethodStr(fullpath, msg, ctx);
             if (StringUtils.isNotBlank(method)) {
@@ -46,8 +46,8 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
                 try {
                     params = getReqParams(msg, ctx);
                 } catch (Exception e) {
-                    json = responseBody.getResponseFailDefinedDataMsg(new Object(), responseMsg.REQ_PARAMS_ANALYSIS);
-                    writeBufferUtil.writeBuffer(ctx, json);
+                    json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.REQ_PARAMS_ANALYSIS);
+                    WriteBufferUtil.writeBuffer(ctx, json);
                     return;
                 }
                 if (StringUtils.startsWithIgnoreCase(fullpath, UrlConstant.ADMIN)) {
@@ -65,7 +65,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         } else {
 
         }
-        writeBufferUtil.writeBuffer(ctx, json);
+        WriteBufferUtil.writeBuffer(ctx, json);
         return;
     }
 

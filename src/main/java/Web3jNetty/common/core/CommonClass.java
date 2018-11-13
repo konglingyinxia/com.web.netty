@@ -1,7 +1,8 @@
 package Web3jNetty.common.core;
 
-import Web3jNetty.common.response.responseBody;
-import Web3jNetty.common.response.responseMsg;
+
+import Web3jNetty.common.response.ResponseBody;
+import Web3jNetty.common.response.ResponseMsg;
 
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * @date 2018-11-09  13:21
  * @project com.web.netty
  */
-public class commonClass {
+public class CommonClass {
     /**
      * @param method 方法名
      * @param object 类名
@@ -21,14 +22,15 @@ public class commonClass {
      * @return
      */
     public static String getMethod(String method, Object object, Map<String, Object> params) {
-        String json = responseBody.getResponseFail();
+        String json = ResponseBody.getResponseFail();
         try {
-            json = object.getClass().getMethod(method, new Class[]{Map.class}).invoke(object, new Object[]{params}).toString();
+            json = String.valueOf(object.getClass().getMethod(method, new Class[]{Map.class}).invoke(object, new Object[]{params}));
         } catch (NoSuchMethodException nme) {
             nme.printStackTrace();
-            json = responseBody.getResponseFailDefinedDataMsg(new Object(), responseMsg.USELESS_REQUEST);
+            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.USELESS_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();
+            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), e.toString());
         }
         return json;
     }

@@ -6,7 +6,7 @@ package Web3jNetty.common.response;
  * @date 2018-11-05  19:41
  * @project comwebnetty
  */
-public enum responseCode {
+public enum ResponseCode {
     /**
      * 业务异常
      */
@@ -21,7 +21,7 @@ public enum responseCode {
     code_100(100);
     private int code;
 
-    responseCode(int code) {
+    ResponseCode(int code) {
         this.code = code;
     }
 

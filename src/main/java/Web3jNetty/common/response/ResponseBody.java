@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2018-11-05  19:40
  * @project comwebnetty
  */
-public class responseBody {
+public class ResponseBody {
     private static String codeStr = "code";//code码
     private static String dataStr = "data";//data数据
     private static String msgStr = "msg";//响应信息
@@ -29,7 +29,7 @@ public class responseBody {
      * 操作成功
      */
     public static String getResponseSuccess() {
-        String successStr = getResponseBody(new Object(), responseMsg.SUCCESS_MSG, responseCode.code_0.getCode());
+        String successStr = getResponseBody(new Object(), ResponseMsg.SUCCESS_MSG, ResponseCode.code_0.getCode());
         return successStr;
     }
 
@@ -37,7 +37,7 @@ public class responseBody {
      * 操作失败
      */
     public static String getResponseFail() {
-        String failStr = getResponseBody(new Object(), responseMsg.FAIL_MSG, responseCode.code_1.getCode());
+        String failStr = getResponseBody(new Object(), ResponseMsg.FAIL_MSG, ResponseCode.code_1.getCode());
         return failStr;
     }
 
@@ -45,7 +45,7 @@ public class responseBody {
      * 操作成功自定义信息与返回数据
      */
     public static String getResponseSuccessDefinedDataMsg(Object data, String msg) {
-        String successStr = getResponseBody(data, msg, responseCode.code_0.getCode());
+        String successStr = getResponseBody(data, msg, ResponseCode.code_0.getCode());
         return successStr;
     }
 
@@ -53,7 +53,7 @@ public class responseBody {
      * 操作失败自定义信息与返回数据
      */
     public static String getResponseFailDefinedDataMsg(Object data, String msg) {
-        String failStr = getResponseBody(data, msg, responseCode.code_1.getCode());
+        String failStr = getResponseBody(data, msg, ResponseCode.code_1.getCode());
         return failStr;
     }
 
@@ -61,7 +61,7 @@ public class responseBody {
      * 100其他异常
      */
     public static String getResponseCode100() {
-        String failStr = getResponseBody(null, responseMsg.EXCEPTION_100, responseCode.code_100.getCode());
+        String failStr = getResponseBody(null, ResponseMsg.EXCEPTION_100, ResponseCode.code_100.getCode());
         return failStr;
     }
 

@@ -1,5 +1,10 @@
 package Web3jNetty.openreq.service;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.util.Map;
+
 /**
  * etf 以太坊帐号管理
  *
@@ -10,6 +15,6 @@ package Web3jNetty.openreq.service;
  */
 public interface AccountManageSevice {
 
-    public String  createAccount();
+    public String  createAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException;
 
 }

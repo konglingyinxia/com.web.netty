@@ -1,9 +1,16 @@
 package Web3jNetty.openreq.controller;
 
-import Web3jNetty.common.core.commonClass;
+import Web3jNetty.common.core.CommonClass;
+import Web3jNetty.common.response.ResponseBody;
+import Web3jNetty.common.util.StringUtil;
+import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.service.impl.AccountManageSeviceImpl;
+import org.apache.commons.lang.StringUtils;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.Map;
 
 /**
@@ -14,7 +21,7 @@ import java.util.Map;
  * @date 2018-11-05  22:20
  * @project comwebnetty
  */
-public class OpenreqCommInterface extends commonClass {
+public class OpenreqCommInterface extends CommonClass {
 
     private static OpenreqCommInterface openreqCommInterface = new OpenreqCommInterface();
     private AccountManageSevice accountManageSevice = new AccountManageSeviceImpl();
@@ -28,11 +35,24 @@ public class OpenreqCommInterface extends commonClass {
         return OpenreqCommInterface.getMethod(method, openreqCommInterface, params);
     }
 
-    //创建账号
-    public String openreqCreateAccount(Map<String, Object> params) {
-        String jsonStr = accountManageSevice.createAccount();
+    /**
+     * 创建账号
+     *
+     * @param params account:帐号
+     * @return
+     * @throws InvalidAlgorithmParameterException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchProviderException
+     */
+    public String openreqCreateAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        String jsonStr = ResponseBody.getResponseFailDefinedDataMsg(new Object(),"帐号account未传！");
+        String account =(String) params.get(ReqConstant.ACCOUNT);
+        if(StringUtils.isNotBlank(account)){
+            jsonStr = accountManageSevice.createAccount(params);
+        }
         return jsonStr;
     }
+
 
 }
 

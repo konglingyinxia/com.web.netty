@@ -15,7 +15,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @date 2018-11-06  09:07
  * @project comwebnetty
  */
-public class writeBufferUtil {
+public class WriteBufferUtil {
 
 
     private static AsciiString contentType = HttpHeaderValues.APPLICATION_JSON;
