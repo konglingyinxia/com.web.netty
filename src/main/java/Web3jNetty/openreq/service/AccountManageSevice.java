@@ -17,4 +17,5 @@ public interface AccountManageSevice {
 
     public String  createAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException;
 
+    String getAllBalance(String address);
 }

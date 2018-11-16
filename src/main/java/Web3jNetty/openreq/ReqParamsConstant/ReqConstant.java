@@ -8,7 +8,12 @@ package Web3jNetty.openreq.ReqParamsConstant;
  */
 public class ReqConstant {
     /**
-     * 创建账号
+     * 创建账号 create
      */
-  public static String  ACCOUNT="account";
+  public static String  CREATE_ACCOUNT="account";
+
+    /**
+     * 查询账号余额 blance
+     */
+    public static  String BLANCE_ADDRESS="address";
 }

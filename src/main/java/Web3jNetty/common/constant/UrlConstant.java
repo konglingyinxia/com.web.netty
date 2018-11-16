@@ -24,6 +24,8 @@ public class UrlConstant {
     public static String CREATE_ACCOUNT_URL = "/openreq/createAccount";
 
     //查询余额
+    public static String GET_ALLBALANCE_URL = "/openrep/getAllBalance";
+
 
     //转账交易
 

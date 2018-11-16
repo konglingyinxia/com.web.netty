@@ -1,30 +1,17 @@
 package Web3jNetty.openreq.service.impl;
 
-import Web3jNetty.common.constant.CoinCodeEnum;
-import Web3jNetty.common.dbUtil.JdbcTemplateUtil;
+import Web3jNetty.common.exception.CommonException;
 import Web3jNetty.common.response.ResponseBody;
 import Web3jNetty.common.response.ResponseMsg;
-import Web3jNetty.common.util.DealDateUtil;
 import Web3jNetty.common.walletconfig.WalletConfig;
-import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.dao.AccountManageDao;
 import Web3jNetty.openreq.dao.impl.AccountManageDaoImpl;
 import Web3jNetty.openreq.domain.AccountVO;
 import Web3jNetty.openreq.service.AccountManageSevice;
-import org.web3j.crypto.CipherException;
-import org.web3j.crypto.ECKeyPair;
-import org.web3j.crypto.Keys;
-import org.web3j.crypto.WalletUtils;
-import org.web3j.protocol.core.Request;
-import org.web3j.protocol.core.methods.response.EthAccounts;
+import Web3jNetty.openreq.vo.CoinBlanceVO;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 
-import java.io.File;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.util.Date;
-import java.util.List;
+import java.math.BigInteger;
 import java.util.Map;
 
 /**
@@ -44,10 +31,33 @@ public class AccountManageSeviceImpl implements AccountManageSevice {
      * @return
      */
     @Override
-    public String createAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+    public String createAccount(Map<String, Object> params) {
         AccountVO accountVO = new AccountVO();
         accountManageDao.createAccount(accountVO,params);
         return ResponseBody.getResponseSuccessDefinedDataMsg(accountVO, ResponseMsg.SUCCESS_MSG);
+    }
+
+    /**
+     * 查询账号余额
+     * <p>
+     * 货币单位：1 ether = 1000000000000000000 wei
+     * </p>
+     *
+     * @param address
+     * @return
+     */
+    @Override
+    public String getAllBalance(String address) {
+        CoinBlanceVO coinBlance = new CoinBlanceVO();
+        try {
+            BigInteger balance = WalletConfig.getWeb3j().ethGetBalance(address,
+                    DefaultBlockParameterName.LATEST).send().getBalance();
+            coinBlance.setEthBlance(String.valueOf(balance));
+        } catch (Exception e) {
+            // e.printStackTrace();
+            throw new CommonException("检查地址是否正确,稍后重试！" + e.getMessage());
+        }
+        return ResponseBody.getResponseSuccessDefinedDataMsg(coinBlance, ResponseMsg.SUCCESS_MSG);
     }
 
 }

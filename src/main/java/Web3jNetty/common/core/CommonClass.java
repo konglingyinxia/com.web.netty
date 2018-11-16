@@ -1,6 +1,7 @@
 package Web3jNetty.common.core;
 
 
+import Web3jNetty.common.exception.CommonException;
 import Web3jNetty.common.response.ResponseBody;
 import Web3jNetty.common.response.ResponseMsg;
 
@@ -29,8 +30,14 @@ public class CommonClass {
             nme.printStackTrace();
             json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.USELESS_REQUEST);
         } catch (Exception e) {
-            e.printStackTrace();
-            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), e.toString());
+            //获取反射方法中的异常
+           /* StringWriter writer = new StringWriter();
+            e.getCause().printStackTrace(new PrintWriter(writer, true));*/
+            e = (Exception) e.getCause();
+            if (!(e instanceof CommonException)) {
+                e.getCause().printStackTrace();
+            }
+            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), e.getCause().getMessage());
         }
         return json;
     }
