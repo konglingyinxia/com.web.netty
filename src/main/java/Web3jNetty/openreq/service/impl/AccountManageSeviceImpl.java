@@ -6,7 +6,7 @@ import Web3jNetty.common.response.ResponseMsg;
 import Web3jNetty.common.walletconfig.WalletConfig;
 import Web3jNetty.openreq.dao.AccountManageDao;
 import Web3jNetty.openreq.dao.impl.AccountManageDaoImpl;
-import Web3jNetty.openreq.domain.AccountVO;
+import Web3jNetty.openreq.vo.AccountVO;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.vo.CoinBlanceVO;
 import org.web3j.protocol.core.DefaultBlockParameterName;

@@ -1,6 +1,6 @@
 package Web3jNetty.openreq.dao;
 
-import Web3jNetty.openreq.domain.AccountVO;
+import Web3jNetty.openreq.vo.AccountVO;
 
 import java.util.Map;
 

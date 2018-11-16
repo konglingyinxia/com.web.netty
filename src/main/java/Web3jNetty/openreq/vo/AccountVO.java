@@ -1,4 +1,4 @@
-package Web3jNetty.openreq.domain;
+package Web3jNetty.openreq.vo;
 
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;

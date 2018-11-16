@@ -5,7 +5,7 @@ import Web3jNetty.common.dbUtil.JdbcTemplateUtil;
 import Web3jNetty.common.util.DealDateUtil;
 import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.dao.AccountManageDao;
-import Web3jNetty.openreq.domain.AccountVO;
+import Web3jNetty.openreq.vo.AccountVO;
 
 import java.util.Date;
 import java.util.Map;
