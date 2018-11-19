@@ -1,16 +1,20 @@
 package Web3jNetty.openreq.controller;
 
 import Web3jNetty.common.core.CommonClass;
+import Web3jNetty.common.exception.CommonException;
 import Web3jNetty.common.response.ResponseBody;
+import Web3jNetty.common.util.StringUtil;
 import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.service.impl.AccountManageSeviceImpl;
 import org.apache.commons.lang.StringUtils;
 
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 请求路径转发
@@ -64,6 +68,24 @@ public class OpenreqCommInterface extends CommonClass {
         return jsonStr;
     }
 
+    /**
+     * 转账交易openreq/transferDeal
+     */
+    public String openreqTransferDeal(Map<String, Object> params) throws IOException, ExecutionException, InterruptedException {
+        String from = (String) params.get(ReqConstant.TRANSACTION_FROM);
+        String to = (String) params.get(ReqConstant.TRANSACTION_TO);
+        String value = (String) params.get(ReqConstant.TRANSACTION_VALUE);
+        String privateKey = (String) params.get(ReqConstant.TRANSACTION_PRIKEY);
+        String jsonStr = ResponseBody.getResponseFailDefinedDataMsg(new Object(), String.format("检查以下参数｛%s ,%s,%s,%s｝是否传入！", ReqConstant.TRANSACTION_FROM
+                , ReqConstant.TRANSACTION_TO, ReqConstant.TRANSACTION_VALUE, ReqConstant.TRANSACTION_PRIKEY));
+        if (StringUtils.isNotBlank(from) && StringUtils.isNotBlank(to) && StringUtils.isNotBlank(value) && StringUtils.isNotBlank(privateKey)) {
+            if (!StringUtil.isAllNums(value)) {
+                throw new CommonException("参数value应为数字！");
+            }
+            jsonStr = accountManageSevice.transferDeal(from, to, value, privateKey);
+        }
+        return jsonStr;
+    }
 
 
 }

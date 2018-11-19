@@ -1,9 +1,11 @@
 package Web3jNetty.openreq.service;
 
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * etf 以太坊帐号管理
@@ -18,4 +20,6 @@ public interface AccountManageSevice {
     public String  createAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException;
 
     String getAllBalance(String address);
+
+    String transferDeal(String from, String to, String value,String privateKey) throws IOException, ExecutionException, InterruptedException;
 }

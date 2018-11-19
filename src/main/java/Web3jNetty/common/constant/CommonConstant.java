@@ -16,4 +16,10 @@ public class CommonConstant {
      * 小数位保留8位
      */
     public static final Integer DECIMAL_PLACE_EIGHT = 8;
+
+    /**
+     * ETH交易单位为 wei
+     * 1 ether = 1000000000000000000 wei
+     */
+    public static final Long aLong = 1000000000000000000L;
 }

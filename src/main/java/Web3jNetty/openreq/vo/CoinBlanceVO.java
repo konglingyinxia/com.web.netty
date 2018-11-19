@@ -15,17 +15,12 @@ import java.math.RoundingMode;
  * @project com.web.netty
  */
 public class CoinBlanceVO {
-    /**
-     * ETH余额查询 返回值单位为 wei
-     * 1 ether = 1000000000000000000 wei
-     */
-    private static final Long aLong = 1000000000000000000L;
 
     private String EthBlance;
 
     public void setEthBlance(String ethBlance) {
         if (StringUtils.isNumeric(ethBlance)) {
-            BigDecimal decimal = new BigDecimal(ethBlance).divide(new BigDecimal(aLong), CommonConstant.DECIMAL_PLACE_EIGHT, RoundingMode.DOWN);
+            BigDecimal decimal = new BigDecimal(ethBlance).divide(new BigDecimal(CommonConstant.aLong), CommonConstant.DECIMAL_PLACE_EIGHT, RoundingMode.DOWN);
             ethBlance = decimal.stripTrailingZeros().toPlainString();
         }
         EthBlance = ethBlance;

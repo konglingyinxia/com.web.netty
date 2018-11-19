@@ -35,9 +35,9 @@ public class CommonClass {
             e.getCause().printStackTrace(new PrintWriter(writer, true));*/
             e = (Exception) e.getCause();
             if (!(e instanceof CommonException)) {
-                e.getCause().printStackTrace();
+                e.printStackTrace();
             }
-            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), e.getCause().getMessage());
+            json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), e.getMessage());
         }
         return json;
     }

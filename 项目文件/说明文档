@@ -1,4 +1,4 @@
 一、项目简介：
     本项目是对ETF钱包的封装
 二、使用技术：
-    1.netty(http开发),mysql,
+    1.netty(http开发),sqlLite,

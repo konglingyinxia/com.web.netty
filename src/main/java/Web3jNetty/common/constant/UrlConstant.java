@@ -26,9 +26,8 @@ public class UrlConstant {
     //查询余额
     public static String GET_ALLBALANCE_URL = "/openrep/getAllBalance";
 
-
     //转账交易
-
+    public static String TRANSFER_BOOK_DEAL = "/openreq/transferDeal";
     //查询订单
 
 

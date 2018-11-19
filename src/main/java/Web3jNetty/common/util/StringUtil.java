@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author 卫星
@@ -40,6 +41,24 @@ public class StringUtil {
         return arrayStr.toArray(array);
     }
 
+    /**
+     * 判断是否是整数或小数（不含负号）
+     * <p>
+     * true:是
+     * false:否
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isAllNums(String str) {
+        if (str == null) {
+            return false;
+        }
+        // -?[0-9]+.?[0-9]*
+        String RegEx = "[0-9]+|[0-9]+.[0-9]+";
+        Pattern pattern = Pattern.compile(RegEx);
+        return pattern.matcher(str).matches();
+    }
 
 
 

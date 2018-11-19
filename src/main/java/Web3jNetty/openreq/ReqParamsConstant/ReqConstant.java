@@ -16,4 +16,14 @@ public class ReqConstant {
      * 查询账号余额 blance
      */
     public static  String BLANCE_ADDRESS="address";
+
+    /**
+     * ETH交易
+     */
+    public static String TRANSACTION_FROM = "fromAddr";
+    public static String TRANSACTION_TO = "toAddr";
+    public static String TRANSACTION_VALUE = "dealValue";
+    public static String TRANSACTION_PRIKEY= "privateKey";
+
+
 }
