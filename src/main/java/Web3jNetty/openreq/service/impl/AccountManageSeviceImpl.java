@@ -5,7 +5,9 @@ import Web3jNetty.common.response.ResponseBody;
 import Web3jNetty.common.response.ResponseMsg;
 import Web3jNetty.common.walletconfig.WalletConfig;
 import Web3jNetty.openreq.dao.AccountManageDao;
+import Web3jNetty.openreq.dao.TransferDealManageDao;
 import Web3jNetty.openreq.dao.impl.AccountManageDaoImpl;
+import Web3jNetty.openreq.dao.impl.TransferDealManageDaoImpl;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.vo.AccountVO;
 import Web3jNetty.openreq.vo.CoinBlanceVO;
@@ -33,6 +35,7 @@ import java.util.concurrent.ExecutionException;
 public class AccountManageSeviceImpl implements AccountManageSevice {
 
     AccountManageDao  accountManageDao = new AccountManageDaoImpl();
+    TransferDealManageDao transferDealManageDao = new TransferDealManageDaoImpl();
 
     /**
      * 创建账号
@@ -91,6 +94,7 @@ public class AccountManageSeviceImpl implements AccountManageSevice {
         } else {
             String transactionHash = ethSendTransaction.getTransactionHash();
             TransactionBackVO transactionBackVO = TransactionDealVO.getTransactionBackVO(transactionHash, value);
+            Integer status =  transferDealManageDao.insertTransferDeal(transactionHash,from,to,value);
             return ResponseBody.getResponseSuccessDefinedDataMsg(transactionBackVO, ResponseMsg.SUCCESS_MSG);
         }
     }

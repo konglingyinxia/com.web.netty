@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class AccountManageDaoImpl implements AccountManageDao {
 
-
     @Override
     public void createAccount(AccountVO accountVO, Map<String, Object> params) {
         String sql = "INSERT INTO \"user_account\" ( \"username\", \"address\", \"salt\", \"publicKey\", \"code\", \"create_time\") VALUES (\'%s\', '%s', '%s', '%s','%s','%s')";

@@ -87,6 +87,17 @@ public class OpenreqCommInterface extends CommonClass {
         return jsonStr;
     }
 
+    /**
+     * 查询订单交易 /openreq/dealRecord
+     */
+    public String openreqDealRecord(Map<String, Object> params) {
+
+
+
+        return "";
+
+    }
+
 
 }
 
