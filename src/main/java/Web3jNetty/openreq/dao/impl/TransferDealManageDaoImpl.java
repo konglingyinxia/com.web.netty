@@ -11,7 +11,9 @@ import Web3jNetty.openreq.dao.TransferDealManageDao;
  * @project com.web.netty
  */
 public class TransferDealManageDaoImpl implements TransferDealManageDao {
-
+    /**
+     * 交易记录处理
+     */
     String insertTransferDealSql = "INSERT INTO \"transfer_deal_record\" ( \"from\", \"to\", \"tx_hash\", \"value\") VALUES (\"%s\", \"%s\", \"%s\",\"%s\")";
 
     @Override

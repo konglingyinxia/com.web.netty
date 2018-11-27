@@ -22,11 +22,21 @@ import java.math.RoundingMode;
  */
 public class TransactionDealVO {
     //默认 22000000000 wei
-    static BigInteger gasPrice = new BigInteger("22000000000");
+    static BigInteger gasPrice;
     //默认 6700000
     static BigInteger gasLimit = new BigInteger("6700000");
     static BigInteger nonce = null;
     static String data = null;
+
+    static {
+        try {
+            gasPrice = WalletConfig.getWeb3j().ethGasPrice().send().getGasPrice();
+        } catch (IOException e) {
+            e.printStackTrace();
+            gasPrice = new BigInteger("22000000000");
+        }
+    }
+
 
     /**
      * 普通单节点测试  （普通交易）

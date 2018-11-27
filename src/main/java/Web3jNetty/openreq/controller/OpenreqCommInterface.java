@@ -3,11 +3,13 @@ package Web3jNetty.openreq.controller;
 import Web3jNetty.common.core.CommonClass;
 import Web3jNetty.common.exception.CommonException;
 import Web3jNetty.common.response.ResponseBody;
+import Web3jNetty.common.response.ResponseMsg;
 import Web3jNetty.common.util.StringUtil;
 import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.service.impl.AccountManageSeviceImpl;
 import org.apache.commons.lang.StringUtils;
+import org.web3j.crypto.WalletUtils;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -96,6 +98,18 @@ public class OpenreqCommInterface extends CommonClass {
 
         return "";
 
+    }
+
+    /**
+     * 检测以太坊地址 check_eth_address
+     */
+    public String openreqCheckAddress(Map<String, Object> params) {
+        String checkAddress = (String) params.get(ReqConstant.CHECK_ADDRESS_ISTRUE);
+        String jsonStr = ResponseBody.getResponseFailDefinedDataMsg(new Object(), String.format("需检测地址%s未传！", ReqConstant.CHECK_ADDRESS_ISTRUE));
+        if (StringUtils.isNotBlank(checkAddress)) {
+            jsonStr = ResponseBody.getResponseSuccessDefinedDataMsg(WalletUtils.isValidAddress(checkAddress), ResponseMsg.SUCCESS_MSG);
+        }
+        return jsonStr;
     }
 
 

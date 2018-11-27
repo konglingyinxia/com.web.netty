@@ -40,6 +40,11 @@ public class UrlConstant {
      */
     public static String DEAL_FLOW_RECORD = "/openreq/dealRecord";
 
+    /**
+     * 检测以太坊地址 正确性
+     */
+    public static String CHECK_ETH_ADDRESS = "/openreq/checkAddress";
+
 
 
 

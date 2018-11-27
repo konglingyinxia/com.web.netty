@@ -25,5 +25,10 @@ public class ReqConstant {
     public static String TRANSACTION_VALUE = "dealValue";
     public static String TRANSACTION_PRIKEY= "privateKey";
 
+    /**
+     * 检测交易地址
+     */
+    public static  String CHECK_ADDRESS_ISTRUE="checkAddress";
+
 
 }
