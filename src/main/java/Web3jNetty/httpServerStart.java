@@ -22,7 +22,7 @@ public class httpServerStart {
     private static int ports = httpConfig.port;
 
     public static void start() throws Exception {
-        
+
         ServerBootstrap b = new ServerBootstrap();
         NioEventLoopGroup group = new NioEventLoopGroup();
         b.group(group).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
