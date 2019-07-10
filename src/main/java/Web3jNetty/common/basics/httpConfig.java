@@ -23,7 +23,7 @@ public class httpConfig {
 
 
     //静态文件过滤
-    private static final String APP_JS_STATIC = "/static";
+    private static final String APP_JS_STATIC = "/43";
     //静态文件过滤
     private static final String STATIC_FAVICON = "/favicon.ico";
 

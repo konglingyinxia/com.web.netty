@@ -1,7 +1,6 @@
 package Web3jNetty.openreq.vo;
 
-import org.web3j.crypto.ECKeyPair;
-import org.web3j.crypto.Keys;
+import org.web3j.crypto.*;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
@@ -57,5 +56,14 @@ public class AccountVO {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountVO{" +
+                "privateKey='" + privateKey + '\'' +
+                ", publicKey='" + publicKey + '\'' +
+                ", account='" + account + '\'' +
+                '}';
     }
 }

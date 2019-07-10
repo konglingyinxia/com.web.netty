@@ -31,8 +31,7 @@ public class CommonClass {
             json = ResponseBody.getResponseFailDefinedDataMsg(new Object(), ResponseMsg.USELESS_REQUEST);
         } catch (Exception e) {
             //获取反射方法中的异常
-           /* StringWriter writer = new StringWriter();
-            e.getCause().printStackTrace(new PrintWriter(writer, true));*/
+
             e = (Exception) e.getCause();
             if (!(e instanceof CommonException)) {
                 e.printStackTrace();

@@ -5,9 +5,11 @@ import Web3jNetty.common.exception.CommonException;
 import Web3jNetty.common.response.ResponseBody;
 import Web3jNetty.common.response.ResponseMsg;
 import Web3jNetty.common.util.StringUtil;
+import Web3jNetty.common.walletconfig.WalletConfig;
 import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.service.impl.AccountManageSeviceImpl;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.web3j.crypto.WalletUtils;
 
@@ -55,6 +57,17 @@ public class OpenreqCommInterface extends CommonClass {
         if(StringUtils.isNotBlank(account)){
             jsonStr = accountManageSevice.createAccount(params);
         }
+        return jsonStr;
+    }
+
+    /**
+     * 创建助记词钱包账户
+     */
+    public String openreqWordCreateAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        String jsonStr = ResponseBody.getResponseFailDefinedDataMsg(new Object(), String.format("帐号%s未传！", ReqConstant.CREATE_ACCOUNT));
+        String account = (String) params.get(ReqConstant.CREATE_ACCOUNT);
+        String pwd = (String) params.get(ReqConstant.ETH_WALLET_PWD);
+
         return jsonStr;
     }
 
@@ -110,6 +123,11 @@ public class OpenreqCommInterface extends CommonClass {
             jsonStr = ResponseBody.getResponseSuccessDefinedDataMsg(WalletUtils.isValidAddress(checkAddress), ResponseMsg.SUCCESS_MSG);
         }
         return jsonStr;
+    }
+
+    public static void main(String[] args) throws IOException {
+        ;
+        System.out.println(JSONObject.toJSONString(WalletConfig.getWeb3j().ethGetBlockByHash("0xa86791075eaa060d93308a2ccc36efafd85179d37f1ef8f2a40791cab1ce8ee5",true).send()));
     }
 
 

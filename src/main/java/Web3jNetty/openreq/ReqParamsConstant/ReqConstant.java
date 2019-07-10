@@ -11,6 +11,10 @@ public class ReqConstant {
      * 创建账号 create
      */
   public static String  CREATE_ACCOUNT="account";
+  /**
+   * 钱包密码
+   */
+  public static String  ETH_WALLET_PWD="pwd";
 
     /**
      * 查询账号余额 blance
