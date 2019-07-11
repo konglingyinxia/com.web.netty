@@ -9,8 +9,10 @@ import Web3jNetty.common.walletconfig.WalletConfig;
 import Web3jNetty.openreq.ReqParamsConstant.ReqConstant;
 import Web3jNetty.openreq.service.AccountManageSevice;
 import Web3jNetty.openreq.service.impl.AccountManageSeviceImpl;
+import Web3jNetty.openreq.vo.MnemonicAccountVO;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
+import org.web3j.crypto.CipherException;
 import org.web3j.crypto.WalletUtils;
 
 import java.io.IOException;
@@ -64,11 +66,8 @@ public class OpenreqCommInterface extends CommonClass {
      * 创建助记词钱包账户
      */
     public String openreqWordCreateAccount(Map<String, Object> params) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
-        String jsonStr = ResponseBody.getResponseFailDefinedDataMsg(new Object(), String.format("帐号%s未传！", ReqConstant.CREATE_ACCOUNT));
-        String account = (String) params.get(ReqConstant.CREATE_ACCOUNT);
         String pwd = (String) params.get(ReqConstant.ETH_WALLET_PWD);
-
-        return jsonStr;
+        return JSONObject.toJSONString(ResponseBody.getResponseSuccessDefinedDataMsg(new MnemonicAccountVO(pwd),ResponseMsg.SUCCESS_MSG));
     }
 
     /**
@@ -125,8 +124,10 @@ public class OpenreqCommInterface extends CommonClass {
         return jsonStr;
     }
 
-    public static void main(String[] args) throws IOException {
-        ;
+    public static void main(String[] args) throws IOException, CipherException {
+
+        System.out.println(WalletUtils.generateBip39Wallet("123",null).getMnemonic()); ;
+
         System.out.println(JSONObject.toJSONString(WalletConfig.getWeb3j().ethGetBlockByHash("0xa86791075eaa060d93308a2ccc36efafd85179d37f1ef8f2a40791cab1ce8ee5",true).send()));
     }
 

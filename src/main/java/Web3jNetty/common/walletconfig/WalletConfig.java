@@ -20,10 +20,13 @@ public class WalletConfig {
 
     private static Web3j web3j;
     private static String nodes_req;
+    public static String walletFile;
+
 
     static {
         nodes_req = PropertiesUtil.readProperties("eth_nodes_req");
         web3j = Web3j.build(new HttpService(nodes_req));
+        walletFile = PropertiesUtil.readProperties("wallet_file");
     }
 
     public static Web3j getWeb3j() {
